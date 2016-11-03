@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024042317) do
+ActiveRecord::Schema.define(version: 20161026125810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -903,6 +903,7 @@ ActiveRecord::Schema.define(version: 20161024042317) do
     t.boolean "has_external_wiki"
     t.boolean "lfs_enabled"
     t.text "description_html"
+    t.string "domain_name", default: "aspose.com"
   end
 
   add_index "projects", ["ci_id"], name: "index_projects_on_ci_id", using: :btree
@@ -1173,6 +1174,7 @@ ActiveRecord::Schema.define(version: 20161024042317) do
     t.boolean "ldap_email", default: false, null: false
     t.boolean "external", default: false
     t.string "organization"
+    t.string "domain_name"
   end
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree

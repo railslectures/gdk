@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
   before_action :add_gon_variables
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :require_email, unless: :devise_controller?
+  before_action :reject_domain!
+  before_action :scope_current_domain
+
 
   protect_from_forgery with: :exception
 
@@ -50,6 +53,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def scope_current_domain
+    Project.current_domain = request.domain
+  end
 
   # This filter handles both private tokens and personal access tokens
   def authenticate_user_from_private_token!
@@ -83,6 +90,14 @@ class ApplicationController < ActionController::Base
     if current_user && current_user.blocked?
       sign_out current_user
       flash[:alert] = "Your account is blocked. Retry when an admin has unblocked it."
+      redirect_to new_user_session_path
+    end
+  end
+
+  def reject_domain!
+    if current_user && !current_user.admin? && current_user.domain_name != request.domain
+      sign_out current_user
+      flash[:alert] = "Your are not authorize to access this domain: #{request.domain} "
       redirect_to new_user_session_path
     end
   end

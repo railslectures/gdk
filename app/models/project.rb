@@ -59,6 +59,7 @@ class Project < ActiveRecord::Base
 
   attr_accessor :new_default_branch
   attr_accessor :old_path_with_namespace
+  cattr_accessor :current_domain
 
   alias_attribute :title, :name
 
@@ -189,7 +190,7 @@ class Project < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   # Scopes
-  default_scope { where(pending_delete: false) }
+  default_scope { where(pending_delete: false , domain_name: Project.current_domain) }
 
   scope :sorted_by_activity, -> { reorder(last_activity_at: :desc) }
   scope :sorted_by_stars, -> { reorder('projects.star_count DESC') }

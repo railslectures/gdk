@@ -1,0 +1,13 @@
+- @no_container = true
+- page_title "Users"
+
+%div{ class: container_class }
+  .top-area
+    .prepend-top-default
+      %h3 Source Code Projects
+  %ul.users-list.content-list
+    - if @users.empty?
+      %li
+        .nothing-here-block No users found.
+    - else
+      = render partial: 'help/user', collection: @users

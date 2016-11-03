@@ -1,0 +1,32 @@
+- if user.domain_name == "aspose.com"
+  .api-box.col-lg-4
+    .api-product-title
+      %a{:href => "https://github.com/aspose-words"}
+        %i.api-words-ico.api-ico  
+      %div
+        %a{:href => user_url(user)}
+          %h2 #{user.name}
+          %span Product Family
+    %ul
+      %li
+        %a{:href => "https://github.com/aspose-words/Aspose.Words-for-.NET"} Aspose.Words for .NET
+      %li
+        %a{:href => "https://github.com/aspose-words/Aspose.Words-for-Java"} Aspose.Words for Java
+      %li
+        %a{:href => "https://github.com/aspose-words/Aspose.Words-for-Cloud"} Aspose.Words for Cloud
+      %li
+        %a{:href => "https://github.com/aspose-words/Aspose.Words-for-Android"} Aspose.Words for Android
+- else
+  .api-box.col-lg-4
+    .api-product-title
+      %a{:href => "https://github.com/aspose-words"}
+        %i.api-words-ico.api-ico  
+      %div
+        %a{:href => user_url(user)}
+          %h2 #{user.name}
+          %span Product Family
+    %ul
+      %li
+        %a{:href => "https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-.NET"} GroupDocs.Viewer for .NET
+      %li
+        %a{:href => "https://github.com/groupdocs-viewer/GroupDocs.Viewer-for-Java"} GroupDocs.Viewer for Java

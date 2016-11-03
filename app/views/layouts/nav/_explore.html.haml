@@ -1,4 +1,8 @@
 %ul.nav.nav-sidebar
+  = nav_link() do
+    = link_to root_path, title: 'Home' do
+      %span
+        Home
   = nav_link(path: ['dashboard#show', 'root#show', 'projects#trending', 'projects#starred', 'projects#index'], html_options: {class: 'home'}) do
     = link_to explore_root_path, title: 'Projects' do
       %span
