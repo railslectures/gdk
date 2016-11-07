@@ -23,8 +23,6 @@ class ApplicationController < ActionController::Base
   before_action :require_email, unless: :devise_controller?
   before_action :reject_domain!
   before_action :scope_current_domain
-
-
   protect_from_forgery with: :exception
 
   helper_method :can?, :current_application_settings
@@ -323,4 +321,9 @@ class ApplicationController < ActionController::Base
   def u2f_app_id
     request.base_url
   end
+
+  def default_url_options
+    Rails.application.routes.default_url_options = {:host => request.host_with_port}
+  end
+
 end
