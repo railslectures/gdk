@@ -6,8 +6,8 @@
     .prepend-top-default
       %h3 Source Code Projects
   %ul.users-list.content-list
-    - if @users.empty?
+    - if Project.count == 0
       %li
-        .nothing-here-block No users found.
+        .nothing-here-block No projects found.
     - else
       = render partial: 'help/user', collection: @users

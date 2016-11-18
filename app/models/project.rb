@@ -211,6 +211,8 @@ class Project < ActiveRecord::Base
 
   scope :excluding_project, ->(project) { where.not(id: project) }
 
+  scope :with_domain_name, -> { where(domain_name: Project.current_domain ) }
+
   state_machine :import_status, initial: :none do
     event :import_start do
       transition [:none, :finished] => :started
